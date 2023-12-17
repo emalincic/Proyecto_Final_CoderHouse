@@ -1,0 +1,9 @@
+from django.contrib import admin
+from AppCoder.models import Alumno, Profesor
+from accounts.models import Avatar
+
+admin.site.register(Profesor)
+
+admin.site.register(Alumno)
+
+admin.site.register(Avatar)

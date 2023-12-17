@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+</nav>
+<br>
+<br>
+<br>
+<br>
+  {% if profesores %}
+    <h2>Profesores:</h2>
+      {% for profesor in profesores %}
+        <h3>{{profesor.nombre}} {{profesor.apellido}}</h3>
+             <p>Profesor de: {{profesor.profesor_de}}</p>
+             <p>Fecha de Nacimiento (AAAA-MM-DD): {{profesor.fecha_nacimiento}}</p>
+             <p>Mail: {{profesor.mail}}</p>
+        <p>
+            <a href="{% url 'ProfesorEditar' profesor.id %}">Editar</a>
+        </p>
+        <p>
+            <a href="{% url 'ProfesorEliminar' profesor.id %}">Eliminar</a>
+        </p>
+        <hr>
+    {% endfor %}
+  {% else %}
+    <p class="alert alert-warning">No se ha podido encontrar ningún profesor anotado hasta el momento.</p>
+  {% endif %}
+{% endblock %}

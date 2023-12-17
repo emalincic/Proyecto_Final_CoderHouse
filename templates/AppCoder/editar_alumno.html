@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Editar Profesor</h1>
+  <form id="miFormulario" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    <a class="btn btn-primary" href="{% url 'alumno' %}"></a>
+    <a class="btn btn-secondary">Volver</a>
+  </form>
+
+{% endblock %}

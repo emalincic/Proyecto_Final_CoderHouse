@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+</nav>
+<br>
+<br>
+<br>
+<br>
+  {% if alumnos %}
+    <h2>Alumnos:</h2>
+      {% for alumno in alumnos %}
+        <h3>{{alumno.nombre}} {{alumno.apellido}}</h3>
+             <p>{{alumno.profesor_de}}</p>
+             <p>{{alumno.mail}}</p>
+        <p>
+            <a href="{% url 'AlumnoEditar' profesor.id %}">Editar</a>
+        </p>
+        <p>
+            <a href="{% url 'AlumnoEliminar' profesor.id %}">Eliminar</a>
+        </p>
+        <hr>
+    {% endfor %}
+  {% else %}
+    <p class="alert alert-warning">No se ha podido encontrar ningún alumno anotado hasta el momento.</p>
+  {% endif %}
+{% endblock %}

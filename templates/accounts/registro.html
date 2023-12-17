@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+</nav>
+<br>
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Registrarse">
+</form>
+{% endblock %}

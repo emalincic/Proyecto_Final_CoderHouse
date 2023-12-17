@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+</nav>
+<br>
+<br>
+<br>
+<br>
+<form method="post">
+    {% csrf_token %}
+    Estas por desanotarte como profesor, estás seguro?
+    <input type="submit" value="Eliminar">
+</form>
+
+{% endblock %}

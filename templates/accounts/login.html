@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Login</title>
+    </head>
+    <body>
+    <h2>Por favor, inicia sesión para ingresar a la página</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Iniciar sesión">
+        </form>
+    <h2>
+        Si no tiene cuenta entonces por favor <a class="btn btn-primary" href="{% url 'Registro' %}" type="button">registrese</a> aquí para poder ingresar
+
+    </h2>
+    </body>
+</html>

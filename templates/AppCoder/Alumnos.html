@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+</nav>
+<br>
+<br>
+<br>
+<br>
+        {% for alumno in alumnos %}
+            <p>Nombre: {{alumno.nombre}}</p>
+            <p>Apellido: {{alumno.apellido}}</p>
+            <p>Fecha de Nacimiento (AAAA-MM-DD): {{alumno.fecha_nacimiento}}</p>
+            <p>Mail: {{alumno.mail}}</p>
+            <hr>
+        {% endfor %}
+{% endblock %}
