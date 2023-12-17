@@ -3,12 +3,13 @@
 {% block main %}
 <nav class="navbar navbar-light bg-dark static-top" id="mainNav">
     <br>
+    <br>
 </nav>
 <br>
 <br>
 <br>
 <br>
-<form action="/app/show/" method="POST">{% csrf_token %}
+<form action="" method="POST">{% csrf_token %}
     {{form.as_p}}
     <input type="submit" value="agregar">
 </form>

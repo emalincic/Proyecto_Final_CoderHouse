@@ -3,6 +3,7 @@
 {% block main %}
 <nav class="navbar navbar-light bg-dark static-top" id="mainNav">
     <br>
+    <br>
 </nav>
 <br>
 <br>
@@ -13,7 +14,7 @@
       {% for profesor in profesores %}
         <h3>{{profesor.nombre}} {{profesor.apellido}}</h3>
              <p>Profesor de: {{profesor.profesor_de}}</p>
-             <p>Fecha de Nacimiento (AAAA-MM-DD): {{profesor.fecha_nacimiento}}</p>
+             <p>Fecha de Nacimiento: {{profesor.fecha_nacimiento}}</p>
              <p>Mail: {{profesor.mail}}</p>
         <p>
             <a href="{% url 'ProfesorEditar' profesor.id %}">Editar</a>

@@ -3,6 +3,7 @@
 {% block main %}
 <nav class="navbar navbar-light bg-dark static-top" id="mainNav">
     <br>
+    <br>
 </nav>
 <br>
 <br>
@@ -12,13 +13,13 @@
     <h2>Alumnos:</h2>
       {% for alumno in alumnos %}
         <h3>{{alumno.nombre}} {{alumno.apellido}}</h3>
-             <p>{{alumno.profesor_de}}</p>
+             <p>{{alumno.fecha_nacimiento}}</p>
              <p>{{alumno.mail}}</p>
         <p>
-            <a href="{% url 'AlumnoEditar' profesor.id %}">Editar</a>
+            <a href="{% url 'AlumnoEditar' alumno.id %}">Editar</a>
         </p>
         <p>
-            <a href="{% url 'AlumnoEliminar' profesor.id %}">Eliminar</a>
+            <a href="{% url 'AlumnoEliminar' alumno.id %}">Eliminar</a>
         </p>
         <hr>
     {% endfor %}

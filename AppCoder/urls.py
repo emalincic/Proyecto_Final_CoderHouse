@@ -1,8 +1,8 @@
 from django.urls import path
 
-from AppCoder.views import show_html, agregar_profesor, agregar_alumno, ProfesorList, ProfesorEliminar, \
+from AppCoder.views import show_html, agregar_profesor, agregar_alumno, ProfesorEliminar, \
     ProfesorActualizacion, \
-    buscar_profesor, buscar_alumno, AboutView, ProjectView
+    buscar_profesor, buscar_alumno, AboutView, ProjectView, AlumnoActualizacion, AlumnoEliminar
 
 urlpatterns = [
     path('show/', show_html),
@@ -10,10 +10,12 @@ urlpatterns = [
     path('Alumno/', agregar_alumno),
     path('buscar_profesor/', buscar_profesor, name='buscar_profesor'),
     path('buscar_alumno/', buscar_alumno, name='buscar_profesor'),
-    path('profesores/listar', ProfesorList.as_view(), name="ProfesorList"),
     path('editar/<int:pk>', ProfesorActualizacion.as_view(), name="ProfesorEditar"),
     path('eliminar/<int:pk>', ProfesorEliminar.as_view(), name="ProfesorEliminar"),
+    path('editar/<int:pk>', AlumnoActualizacion.as_view(), name="AlumnoEditar"),
+    path('eliminar/<int:pk>', AlumnoEliminar.as_view(), name="AlumnoEliminar"),
     path('about/', AboutView.as_view()),
     path('project/', ProjectView.as_view()),
+
 
 ]

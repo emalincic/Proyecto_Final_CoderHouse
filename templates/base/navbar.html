@@ -17,8 +17,8 @@
                         <li class="nav-item"><a class="nav-link" href="/app/show/">Inicio</a></li>
                     </ul>
                 {% if user.is_authenticated %}
-                    <img src="{{ user.avatar.imagen.url }}" alt="">
-                    <p class="rounded-circle small img-fluid"></p>
+                    <img class="rounded-circle" style="height: 60px" src="{{ user.avatar.imagen.url }}" alt="">
+
                     <form action="{% url 'Logout' %}" method="POST">
                         {% csrf_token %}
                         <button class="btn btn-primary" type="submit">Logout</button>

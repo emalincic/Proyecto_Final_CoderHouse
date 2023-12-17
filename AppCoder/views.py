@@ -5,7 +5,7 @@ from django.views.generic import DeleteView, UpdateView, CreateView, ListView, D
 
 from AppCoder.forms import ProfesorForm, AlumnoForm, Busqueda
 from AppCoder.models import Profesor, Alumno
-from AppCoder.forms import  Busqueda
+from AppCoder.forms import Busqueda
 
 
 @login_required(login_url='Login')
@@ -13,9 +13,9 @@ def show_html(request):
     contexto = {}
     return render(request, 'index.html', contexto)
 
-def no_hay_nada(request):
-    return render(request, 'error404.html')
 
+def no_hay_nada(request):
+    return render(request, 'AppCoder/error404.html')
 
 
 class AboutView(TemplateView):
@@ -81,12 +81,8 @@ def buscar_alumno(request):
         nombre = form.cleaned_data['nombre']
         alumnos = Profesor.objects.filter(nombre__icontains=nombre)
 
-    return render(request, "AppCoder/buscar_alumno.html", {'form': form, 'profesores': alumnos})
+    return render(request, "AppCoder/buscar_alumno.html", {'form': form, 'alumnos': alumnos})
 
-
-class ProfesorList(LoginRequiredMixin, ListView):
-    model = Profesor
-    template_name = "AppCoder/Profesores.html"
 
 
 class ProfesorActualizacion(UpdateView):
@@ -100,11 +96,6 @@ class ProfesorEliminar(DeleteView):
     model = Profesor
     template_name = "AppCoder/Eliminar_profesor.html"
     success_url = "/app/buscar_profesor"
-
-
-class AlumnoList(LoginRequiredMixin, ListView):
-    model = Alumno
-    template_name = "AppCoder/Alumnos.html"
 
 
 class AlumnoActualizacion(UpdateView):
