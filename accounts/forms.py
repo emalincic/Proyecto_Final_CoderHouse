@@ -15,9 +15,10 @@ class UserRegisterForm(UserCreationForm):
 
 
 class UserUpdateForm(UserChangeForm):
+
     class Meta:
         model = User
-        fields = ('email', "last_name")
+        fields = ('username', 'email')
 
 
 class AvatarUpdateForm(forms.ModelForm):

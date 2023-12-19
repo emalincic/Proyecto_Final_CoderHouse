@@ -25,7 +25,6 @@ def login_request(request):
             if user:
                 login(request, user)
 
-        # return redirect('CursosList')
         return redirect('/app/show/')
 
     form = AuthenticationForm()
@@ -44,7 +43,6 @@ def register_request(request):
 
             return redirect("/accounts/login/")
 
-    # form = UserCreationForm()
     form = UserRegisterForm()
     contexto = {
         "form": form
@@ -61,11 +59,11 @@ def editar_request(request):
         if form.is_valid():
             data = form.cleaned_data
             user.email = data["email"]
-            user.last_name = data["last_name"]
+            user.username = data["username"]
             user.save()
             return redirect("/app/show/")
 
-    form = UserUpdateForm(initial={"email": user.email, "last_name": user.last_name})
+    form = UserUpdateForm(initial={"email": user.email, "username": user.username})
     contexto = {
         "form": form
     }
@@ -80,15 +78,8 @@ def editar_avatar_request(request):
         form = AvatarUpdateForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.cleaned_data
-
-            try:
-                avatar = user.avatar
-                avatar.imagen = data["imagen"]
-            except:
-                avatar = Avatar(
-                    user=user,
-                    imagen=data["imagen"]
-                )
+            avatar = user.avatar
+            avatar.imagen = data["imagen"]
             avatar.save()
 
             return redirect("/app/show/")
@@ -97,4 +88,4 @@ def editar_avatar_request(request):
     contexto = {
         "form": form
     }
-    return render(request, "accounts/avatar.html", contexto)
+    return render(request, "accounts/registro.html", contexto)

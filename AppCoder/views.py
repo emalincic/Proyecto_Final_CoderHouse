@@ -84,7 +84,6 @@ def buscar_alumno(request):
     return render(request, "AppCoder/buscar_alumno.html", {'form': form, 'alumnos': alumnos})
 
 
-
 class ProfesorActualizacion(UpdateView):
     model = Profesor
     success_url = "/buscar_profesor"
