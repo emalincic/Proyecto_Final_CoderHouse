@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block cambio %}
+{% block main %}
 <nav class="navbar navbar-light bg-dark static-top" id="mainNav">
     <br>
     <br>
@@ -12,7 +12,7 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Crear Avatar">
+    <input type="submit" value="Cambiar Avatar">
 
 </form>
 {% endblock %}

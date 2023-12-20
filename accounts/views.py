@@ -39,7 +39,11 @@ def register_request(request):
         form = UserRegisterForm(request.POST, request.FILES)
 
         if form.is_valid():
-            form.save()
+
+            user = form.save()
+            data = form.cleaned_data
+            avatar = Avatar(user=user, imagen=data['avatar'])
+            avatar.save()
 
             return redirect("/accounts/login/")
 
@@ -88,4 +92,4 @@ def editar_avatar_request(request):
     contexto = {
         "form": form
     }
-    return render(request, "accounts/registro.html", contexto)
+    return render(request, "accounts/avatar.html", contexto)
