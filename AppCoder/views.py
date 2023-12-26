@@ -1,14 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.urls import reverse_lazy
-from django.views.generic import DeleteView, UpdateView, TemplateView, CreateView
+from django.views.generic import DeleteView, UpdateView, TemplateView
 
 from AppCoder.forms import ProfesorForm, AlumnoForm, Busqueda, ComentarioForm
 from AppCoder.models import Profesor, Alumno, Comentario
 
 
-@login_required(login_url='Login')
 def show_html(request):
     contexto = {}
     return render(request, 'index.html', contexto)
@@ -114,6 +111,7 @@ class AlumnoEliminar(DeleteView):
     success_url = "/app/buscar_alumno"
 
 
+@login_required(login_url='Login')
 def comentarios(request):
     comentarios = Comentario.objects.all()
 

@@ -54,7 +54,7 @@ def register_request(request):
     return render(request, "accounts/registro.html", contexto)
 
 
-@login_required
+@login_required(login_url='Login')
 def editar_request(request):
     user = request.user
     if request.method == "POST":
@@ -74,7 +74,7 @@ def editar_request(request):
     return render(request, "accounts/registro.html", contexto)
 
 
-@login_required
+@login_required(login_url='Login')
 def editar_avatar_request(request):
     user = request.user
     if request.method == "POST":
