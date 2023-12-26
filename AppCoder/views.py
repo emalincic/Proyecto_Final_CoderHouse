@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render, redirect
-from django.views.generic import DeleteView, UpdateView, CreateView, ListView, DetailView, TemplateView
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView, UpdateView, TemplateView, CreateView
 
-from AppCoder.forms import ProfesorForm, AlumnoForm, Busqueda
-from AppCoder.models import Profesor, Alumno
-from AppCoder.forms import Busqueda
+from AppCoder.forms import ProfesorForm, AlumnoForm, Busqueda, ComentarioForm
+from AppCoder.models import Profesor, Alumno, Comentario
 
 
 @login_required(login_url='Login')
@@ -26,6 +26,7 @@ class ProjectView(TemplateView):
     template_name = "AppCoder/project.html"
 
 
+@login_required(login_url='Login')
 def agregar_profesor(request):
     if request.method == "POST":
         profesorform = ProfesorForm(request.POST)
@@ -45,6 +46,7 @@ def agregar_profesor(request):
     return render(request, "AppCoder/Agregar_profesor.html", contexto)
 
 
+@login_required(login_url='Login')
 def agregar_alumno(request):
     if request.method == "POST":
         alumnoform = AlumnoForm(request.POST)
@@ -64,6 +66,7 @@ def agregar_alumno(request):
     return render(request, "AppCoder/Agregar_alumno.html", contexto)
 
 
+@login_required(login_url='Login')
 def buscar_profesor(request):
     form = Busqueda(request.GET or None)
     profesores = Profesor.objects.all()
@@ -74,6 +77,7 @@ def buscar_profesor(request):
     return render(request, "AppCoder/buscar_profesor.html", {'form': form, 'profesores': profesores})
 
 
+@login_required(login_url='Login')
 def buscar_alumno(request):
     form = Busqueda(request.GET or None)
     alumnos = Alumno.objects.all()
@@ -108,3 +112,17 @@ class AlumnoEliminar(DeleteView):
     model = Alumno
     template_name = "AppCoder/Eliminar_alumno.html"
     success_url = "/app/buscar_alumno"
+
+
+def comentarios(request):
+    comentarios = Comentario.objects.all()
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('comentarios')
+    else:
+        form = ComentarioForm()
+
+    return render(request, 'AppCoder/comentarios.html', {'comentarios': comentarios, 'form': form})

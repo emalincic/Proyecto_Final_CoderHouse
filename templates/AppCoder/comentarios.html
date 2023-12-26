@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+
+{% block main %}
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+    <br>
+</nav>
+<br>
+<br>
+<br>
+<br>
+        {% for comentario in comentarios %}
+            <span><strong>{{ comentario.autor }}:</strong>{{ comentario.contenido }}</span>
+            <br>
+            <span><small>{{comentario.fecha_publicacion}}</small></span>
+            <hr>
+        {% endfor %}
+
+    <form method="post" action="{% url 'comentarios' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Publicar comentario</button>
+    </form>
+{% endblock %}
