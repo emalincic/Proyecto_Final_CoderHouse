@@ -39,7 +39,6 @@ def register_request(request):
         form = UserRegisterForm(request.POST, request.FILES)
 
         if form.is_valid():
-
             user = form.save()
             data = form.cleaned_data
             avatar = Avatar(user=user, imagen=data['avatar'])
@@ -60,18 +59,20 @@ def editar_request(request):
     if request.method == "POST":
 
         form = UserUpdateForm(request.POST)
+
         if form.is_valid():
             data = form.cleaned_data
             user.email = data["email"]
             user.username = data["username"]
+            user.first_name = data['first_name']
+            user.last_name = data['last_name']
             user.save()
-            return redirect("/app/show/")
 
-    form = UserUpdateForm(initial={"email": user.email, "username": user.username})
-    contexto = {
-        "form": form
-    }
-    return render(request, "accounts/registro.html", contexto)
+            return redirect("home")
+    form = UserUpdateForm(initial={"email": user.email, "username": user.username, "first_name": user.first_name,
+                                   "last_name": user.last_name})
+
+    return render(request, "accounts/registro.html", {'form': form})
 
 
 @login_required(login_url='Login')

@@ -17,5 +17,5 @@ Para que los usuarios puedan navegar por la página, deberán poseer una cuenta 
 <li>JavaScript</li>
 
 <h2>Casos de Pruebas</h2><hr>
-
+https://github.com/emalincic/Proyecto_Final_CoderHouse/blob/master/Casos%20de%20Prueba.xlsx
 <h2>Video de demostración</h2><hr>

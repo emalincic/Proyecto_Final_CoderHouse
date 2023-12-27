@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+<nav class="navbar navbar-light bg-dark static-top" id="mainNav">
+    <br>
+    <br>
+</nav>
+<br>
+<br>
+<br>
+<br>
+    <div class="send-message">
+    <div class="container">
+        <div class="row">
+        <div class="col-md-12">
+            <div class="section-heading">
+            <h2>Editar usuario</h2>
+            </div>
+        </div>
+        <div class="col-md-6 border-right">
+            <div class="contact-form">
+            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+                <table> 
+                {{ form1.as_table }} {{ form2.as_table }}
+                </table>
+                <button type="submit">Guardar Cambios</button>
+            </form>
+            </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+
+{% endblock %}

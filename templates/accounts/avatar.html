@@ -9,7 +9,14 @@
 <br>
 <br>
 <br>
+
 <form method="POST" enctype="multipart/form-data">
+{% if user.avatar.imagen.url %}
+
+    <span>Tu avatar actual:</span>
+    <img style="height: 60px" src="{{ user.avatar.imagen.url }}" alt="">
+
+{% endif %}
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="Cambiar Avatar">
