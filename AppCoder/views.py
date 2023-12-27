@@ -87,7 +87,7 @@ def buscar_alumno(request):
 
 class ProfesorActualizacion(UpdateView):
     model = Profesor
-    success_url = "/buscar_profesor"
+    success_url = "/app/buscar_profesor"
     template_name = "AppCoder/Agregar_profesor.html"
     fields = ["nombre", "apellido", "profesor_de", "fecha_nacimiento", "mail"]
 
@@ -100,7 +100,7 @@ class ProfesorEliminar(DeleteView):
 
 class AlumnoActualizacion(UpdateView):
     model = Alumno
-    success_url = "/buscar_alumno"
+    success_url = "/app/buscar_alumno"
     template_name = "AppCoder/Agregar_alumno.html"
     fields = ["nombre", "apellido", "fecha_nacimiento", "mail"]
 

@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.shortcuts import render, redirect
 
-from accounts.forms import UserRegisterForm, UserUpdateForm, AvatarUpdateForm
+from accounts.forms import UserRegisterForm, UserUpdateForm, AvatarUpdateForm, PasswordEditForm
 from accounts.models import Avatar
 
 
@@ -58,21 +58,34 @@ def editar_request(request):
     user = request.user
     if request.method == "POST":
 
-        form = UserUpdateForm(request.POST)
+        form1 = UserUpdateForm(request.POST)
+        form2 = PasswordEditForm(request.user, request.POST)
 
-        if form.is_valid():
-            data = form.cleaned_data
-            user.email = data["email"]
-            user.username = data["username"]
-            user.first_name = data['first_name']
-            user.last_name = data['last_name']
-            user.save()
+        if 'submit1' in request.POST:
+            if form1.is_valid():
+                data = form1.cleaned_data
+                user.email = data['email']
+                user.first_name = data['first_name']
+                user.last_name = data['last_name']
+                user.username = data['username']
+                user.save()
 
-            return redirect("home")
-    form = UserUpdateForm(initial={"email": user.email, "username": user.username, "first_name": user.first_name,
-                                   "last_name": user.last_name})
+                return redirect('home')
 
-    return render(request, "accounts/registro.html", {'form': form})
+        if 'submit2' in request.POST:
+            if form2.is_valid():
+                contra = form2.cleaned_data['new_password1']
+
+                if contra:
+                    user.set_password(contra)
+                    user.save()
+
+                    return redirect('home')
+    else:
+        form1 = UserUpdateForm()
+        form2 = PasswordEditForm(request.user)
+
+    return render(request, "accounts/editar_usuario.html", {'form1': form1, 'form2': form2})
 
 
 @login_required(login_url='Login')

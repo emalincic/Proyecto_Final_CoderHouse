@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 
 
+
 {% block main %}
 <nav class="navbar navbar-light bg-dark static-top" id="mainNav">
     <br>
@@ -10,6 +11,7 @@
 <br>
 <br>
 <br>
+
     <div class="send-message">
     <div class="container">
         <div class="row">
@@ -20,17 +22,28 @@
         </div>
         <div class="col-md-6 border-right">
             <div class="contact-form">
-            <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-                <table> 
-                {{ form1.as_table }} {{ form2.as_table }}
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                {{ form1.as_table }}
                 </table>
-                <button type="submit">Guardar Cambios</button>
+                <button name= 'submit1' type="submit" class="btn btn-primary text-uppercase">Guardar Cambios</button>
+            </form>
+            </div>
+        </div>
+        <div class="col-md-6 border-left">
+            <div class="contact-form">
+            <form action="" method="POST">{% csrf_token %}
+                <table>
+                {{ form2.as_table }}
+                </table>
+                <button name= 'submit2' type="submit" class="btn btn-primary text-uppercase">Guardar Cambios</button>
             </form>
             </div>
         </div>
         </div>
     </div>
     </div>
+
 
 
 {% endblock %}
